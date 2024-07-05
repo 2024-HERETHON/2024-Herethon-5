@@ -27,10 +27,5 @@ function goBack() {
   
     emailInput.addEventListener('input', checkInputs);
     passwordInput.addEventListener('input', checkInputs);
-  
-    form.addEventListener('submit', function (e) {
-        if (submitButton.disabled) {
-            e.preventDefault(); // 폼이 제출되지 않도록 방지
-        }
+
     });
-  });

@@ -38,7 +38,7 @@
         </div>
         <div class="name">
             <label for="name">이름<br> </label>
-            <input type="text" id="name" name="name" placeholder="이름을 입력해주세요" required />
+            <input type="text" id="name" name="first_name" placeholder="이름을 입력해주세요" required />
         </div>
         <div class="age">
             <label for="age">나이<br> </label>
@@ -46,29 +46,37 @@
         </div>
         <div class="sex">
             <label for="sex">성별<br> </label>
-            <input type="radio" id="gender" name="gender" value="여성" checked required>여성<br>
-            <input type="radio" id="gender" name="gender" value="남성" required>남성
+            <input type="radio" id="gender_female" name="gender" value="female" checked required/>여성<br>
+            <input type="radio" id="gender_male" name="gender" value="male" required/>남성
         </div>
         <div class="law">
             <label for="law">약관 동의<br> </label>
-            <input type="checkbox" id="law" name="law" value="전체 동의" onclick="toggleCheckboxes(event)">전체 동의합니다<br>
-            <input type="checkbox" id="law" name="law" value="use" required>개인정보 수집 및 이용에 동의합니다 &#40필수&#41<br>
-            <input type="checkbox" id="law" name="law" value="where">위치정보 수집에 동의합니다 &#40선택&#41
+            <input type="checkbox" id="law_all" name="law_all" value="전체 동의" onclick="toggleCheckboxes(event)">전체 동의합니다<br>
+            <input type="checkbox" id="law_use" name="law" value="use" required>개인정보 수집 및 이용에 동의합니다 &#40필수&#41<br>
+            <input type="checkbox" id="law_where" name="law" value="where">위치정보 수집에 동의합니다 &#40선택&#41
         </div>
         <div id="error-message" style="display: none; color: red">
             회원가입에 실패했습니다. 다시 시도해주세요.
         </div>
         <div class="signupsubmit">
-            <input type="submit" value="팝플레이스 회원가입하기" disabled />
+            <input type="submit" value="팝플레이스 회원가입하기"/>
         </div>
     </form>
     {% if form.errors %}
-        <div id="error-message" style="color: red">
-            회원가입에 실패했습니다. 다시 시도해주세요.
-        </div>
-    {% endif %}
+    <div id="error-message" style="color: red">
+        {% for field in form %}
+            {% for error in field.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
 </div>
 {% endblock %}
 {% block js %}
-<script src="{% static 'js/signup.js' %}"></script>
+<!--<script src="{% static 'js/signup.js' %}"></script>-->
 {% endblock %}

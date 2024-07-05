@@ -12,7 +12,6 @@
   <h1><span class="highlight">팝플레이스</span> 로그인</h1>
   <form id="loginForm" method="POST" onsubmit="return submitForm(event)">
     {% csrf_token %}
-    {{ form.as_p }}
     <div class="formgroup">
       <label for="email">이메일<br> </label>
       <input
